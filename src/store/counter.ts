@@ -1,4 +1,5 @@
-import { observable } from 'mobx'
+// @ts-ignore
+import { observable } from 'mobx';
 
 const counterStore = observable({
   counter: 0,
@@ -16,5 +17,5 @@ const counterStore = observable({
       this.counter++
     }, 1000)
   }
-})
-export default counterStore
+});
+export default counterStore;

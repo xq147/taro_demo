@@ -11,7 +11,8 @@ declare module "*.styl";
 
 declare namespace JSX {
     interface IntrinsicElements {
-        'import': React.DetailedHTMLProps<React.EmbedHTMLAttributes<HTMLEmbedElement>, HTMLEmbedElement>
+      // @ts-ignore
+      'import': React.DetailedHTMLProps<React.EmbedHTMLAttributes<HTMLEmbedElement>, HTMLEmbedElement>
     }
 }
 

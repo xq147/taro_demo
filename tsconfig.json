@@ -22,7 +22,18 @@
     "typeRoots": [
       "node_modules/@types",
       "global.d.ts"
-    ]
+    ],
+    // 地址映射
+    "paths": {
+      "*": [
+        "types/*"
+      ],
+      "@components/*": ["src/components/*"],
+      "@pages/*": ["src/pages/*"],
+      "@utils/*": ["src/utils/*"],
+      "@assets/*": ["src/assets/*"],
+      "@store/*": ["src/store/*"]
+    }
   },
   "exclude": [
     "node_modules",

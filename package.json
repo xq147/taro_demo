@@ -26,7 +26,7 @@
     "dev:qq": "npm run build:qq -- --watch",
     "dev:quickapp": "npm run build:quickapp -- --watch"
   },
-  "author": "",
+  "author": "xq",
   "license": "MIT",
   "dependencies": {
     "@tarojs/components": "2.0.0-beta.8",
@@ -44,7 +44,8 @@
     "@tarojs/mobx-h5": "2.0.0-beta.8",
     "mobx": "4.8.0",
     "nervjs": "^1.5.5",
-    "nerv-devtools": "^1.5.5"
+    "nerv-devtools": "^1.5.5",
+    "taro-ui": "^2.2.4"
   },
   "devDependencies": {
     "@types/react": "^16.4.6",

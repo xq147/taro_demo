@@ -1,8 +1,8 @@
 /**
  * @author xq
  * @date 2019/12/27
- * @Description: demo
-*/
+ * @Description: 首页
+ */
 // eslint-disable-next-line no-unused-vars
 import { ComponentType } from 'react';
 // eslint-disable-next-line no-unused-vars
@@ -30,15 +30,14 @@ interface Index {
 @observer
 class Index extends Component {
 
-  /**
-   * 指定config的类型声明为: Taro.Config
-   *
-   * 由于 typescript 对于 object 类型推导只能推出 Key 的基本类型
-   * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
-   * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
-   */
   config: Config = {
     navigationBarTitleText: '首页'
+  };
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    };
   }
 
   componentWillMount () { }
@@ -55,20 +54,20 @@ class Index extends Component {
 
   componentDidHide () { }
 
-  increment = () => {
+  public increment = () => {
     const { counterStore } = this.props;
     counterStore.increment();
-  }
+  };
 
-  decrement = () => {
+  public decrement = () => {
     const { counterStore } = this.props;
     counterStore.decrement();
-  }
+  };
 
-  incrementAsync = () => {
+  public incrementAsync = () => {
     const { counterStore } = this.props;
     counterStore.incrementAsync();
-  }
+  };
 
   render () {
     const { counterStore: { counter } } = this.props;
