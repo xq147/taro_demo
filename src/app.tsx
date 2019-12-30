@@ -53,7 +53,11 @@ class App extends Component {
     }
   }
 
-  componentDidMount () {}
+  componentDidMount() {
+    Taro.setTabBarStyle({
+      selectedColor: '#fa436a',
+    });
+  }
 
   componentDidShow () {}
 

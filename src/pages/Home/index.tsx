@@ -11,7 +11,7 @@ import Taro, { Component, Config } from '@tarojs/taro';
 import {View, Text} from '@tarojs/components';
 // @ts-ignore
 import {observer} from '@tarojs/mobx';
-import Ajax from '../../utils/request';
+import Request from '../../utils/request';
 import './index.scss';
 
 // eslint-disable-next-line import/no-commonjs,no-unused-vars
@@ -39,6 +39,7 @@ class Index extends Component {
   }
 
   componentWillMount() {
+    this.login();
   }
 
   componentWillReact () {
@@ -62,7 +63,7 @@ class Index extends Component {
     if (checkLogin) return;
     const wxLoginRes = await this.wxLogin();
     // const wxUserInfo = await this.wxGetUserInfo();
-    const res: any = await Ajax({
+    const res: any = await Request({
       method: 'get',
       url: `https://api.weixin.qq.com/sns/jscode2session?appid=${'小程序appid'}&secret=${'小程序密钥'}&js_code=${wxLoginRes.code}&grant_type=authorization_code`,
       data: {},

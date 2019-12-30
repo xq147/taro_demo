@@ -25,7 +25,7 @@ export default (options: OptionsType = {method: 'get', data: {}, dataType: '', u
   }
   if (!options.noLoading) {
     Taro.showLoading({
-      title: '加载中'
+      title: '加载中……'
     });
   }
   if (!noConsole) {
