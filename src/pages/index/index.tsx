@@ -7,6 +7,7 @@
 import { ComponentType } from 'react';
 // eslint-disable-next-line no-unused-vars
 import Taro, { Component, Config } from '@tarojs/taro';
+// @ts-ignore
 import { View, Button, Text } from '@tarojs/components';
 // @ts-ignore
 import { observer, inject } from '@tarojs/mobx';
@@ -76,7 +77,7 @@ class Index extends Component {
       <View className='index'>
         <Button onClick={this.increment}>+</Button>
         <Button onClick={this.decrement}>-</Button>
-        <Button onClick={this.incrementAsync}>Add Async</Button>
+        <Button onClick={this.incrementAsync}>延时添加</Button>
         <Text>{counter}</Text>
       </View>
     )

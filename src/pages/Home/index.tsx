@@ -7,26 +7,24 @@
 import { ComponentType } from 'react';
 // eslint-disable-next-line no-unused-vars
 import Taro, { Component, Config } from '@tarojs/taro';
-import { View, Button, Text } from '@tarojs/components';
 // @ts-ignore
-import { observer, inject } from '@tarojs/mobx';
-
+import {View, Text} from '@tarojs/components';
+// @ts-ignore
+import {observer} from '@tarojs/mobx';
+import Ajax from '../../utils/request';
 import './index.scss';
 
+// eslint-disable-next-line import/no-commonjs,no-unused-vars
+const regeneratorRuntime = require('../../utils/regenerator/runtime'); // 使用async await
+
 type PageStateProps = {
-  counterStore: {
-    counter: number,
-    increment: Function,
-    decrement: Function,
-    incrementAsync: Function
-  }
+
 }
 
 interface Index {
   props: PageStateProps;
 }
 
-@inject('counterStore')
 @observer
 class Index extends Component {
 
@@ -40,13 +38,15 @@ class Index extends Component {
     };
   }
 
-  componentWillMount () { }
-
-  componentWillReact () {
-    console.log('componentWillReact');
+  componentWillMount() {
   }
 
-  componentDidMount () { }
+  componentWillReact () {
+    console.log('componentWillReact 整合登录');
+  }
+
+  componentDidMount() {
+  }
 
   componentWillUnmount () { }
 
@@ -54,29 +54,60 @@ class Index extends Component {
 
   componentDidHide () { }
 
-  public increment = () => {
-    const { counterStore } = this.props;
-    counterStore.increment();
+  /**
+   * 整合登录
+   */
+  async login() {
+    const checkLogin = await this.checkLogin();
+    if (checkLogin) return;
+    const wxLoginRes = await this.wxLogin();
+    // const wxUserInfo = await this.wxGetUserInfo();
+    const res: any = await Ajax({
+      method: 'get',
+      url: `https://api.weixin.qq.com/sns/jscode2session?appid=${'小程序appid'}&secret=${'小程序密钥'}&js_code=${wxLoginRes.code}&grant_type=authorization_code`,
+      data: {},
+      dataType: 'from'
+    });
+    if (res.errno === 0) {
+      //存储用户信息
+      Taro.setStorageSync('userInfo', res.data.userInfo);
+      Taro.setStorageSync('token', res.data.token);
+      return res;
+    } else {
+      Taro.showToast({
+        title: '登录失败'
+      });
+      return;
+    }
   };
 
-  public decrement = () => {
-    const { counterStore } = this.props;
-    counterStore.decrement();
+  /**
+   * 微信登录
+   */
+  wxLogin() {
+    return Taro.login();
   };
 
-  public incrementAsync = () => {
-    const { counterStore } = this.props;
-    counterStore.incrementAsync();
+  /**
+   * 检查是否登录
+   */
+  checkLogin() {
+    return Taro.getStorageSync('token');
   };
 
+  /**
+   * 获取用户信息
+   */
+  wxGetUserInfo() {
+    return Taro.getUserInfo({
+      lang: 'zh_CN',
+      withCredentials: true
+    });
+  };
   render () {
-    const { counterStore: { counter } } = this.props;
     return (
       <View className='index'>
-        <Button onClick={this.increment}>+</Button>
-        <Button onClick={this.decrement}>-</Button>
-        <Button onClick={this.incrementAsync}>Add Async</Button>
-        <Text>{counter}</Text>
+        <Text>首页</Text>
       </View>
     )
   }

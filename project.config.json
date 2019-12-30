@@ -9,8 +9,8 @@
     "postcss": false,
     "minified": true ,
     "uglifyFileName": true,
-    "uploadWithSourceMap": false
-
+    "uploadWithSourceMap": false,
+    "enhance": false
   },
   "compileType": "miniprogram"
 }

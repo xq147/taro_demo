@@ -1,6 +1,6 @@
 
 #### 介绍
------config 项目配置
+>-----config 项目配置
 |    |-----dev.js  开发时配置
 |    |----index.js 默认配置
 |    |----prod.js  打包时配置
@@ -27,11 +27,11 @@
 > 暂无
 
 #### 使用
-1.  npm install
+> 1.  npm install
 
 #### 更新
-1. taro update self
-2. taro update project
+> 1. taro update self
+> 2. taro update project
 
 #### 使用说明
 > MobX 使用参考   https://cn.mobx.js.org/
